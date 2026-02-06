@@ -7,6 +7,7 @@ export default defineConfig({
   base:'/CI-CD-test/',
   // 禁用自动注入crossorigin
   build: {
-    crossOrigin: false // 直接关闭跨域标识，比手动配置Rollup更简单
+    crossOrigin: false, // 直接关闭跨域标识，比手动配置Rollup更简单,
+    cache:false
   }
 })
