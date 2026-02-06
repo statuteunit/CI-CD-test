@@ -5,17 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base:'/CI-CD-test/',
-  build: {
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash].[ext]',
-        chunkFileNames: 'assets/[name]-[hash].[ext]',
-        entryFileNames: 'assets/[name]-[hash].[ext]',
-      }
-    }
-  },
   // 禁用自动注入crossorigin
-  server: {
-    cors: false
+  build: {
+    crossOrigin: false // 直接关闭跨域标识，比手动配置Rollup更简单
   }
 })
