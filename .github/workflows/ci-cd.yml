@@ -1,44 +1,3 @@
-# # 工作流名称
-# name: frontend CI/CD Workflow
-# # 触发条件：
-# on:
-#   push:
-#     branches:[main]
-#   workflow_dispatch:
-
-# jobs:
-#   build-and-deploy:
-#     # 服务器运行在github最新的ubuntu版本
-#     runs-on:ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-#         # 步骤1：拉去GitHub代码到CI服务器
-    
-#     # 步骤2：安装node环境
-#     - name:Set up Node.js
-#       uses:actions/setup-node@v4
-    
-#     # 步骤3：安装项目依赖
-#     - name:Install dependencies
-#       run:npm install
-    
-#     # 步骤4：CI步骤核心执行ESlint代码检查
-#     - name:Lint code with ESLint
-#       run: npm run Lint
-
-#     # 步骤5:CI核心：构建前端项目
-#     - name:Build project
-#       run: npm run build
-
-#     # 步骤6：CD核心：将构建的dist目录部署到Github Pages
-#     - name:Deploy to Github Pages
-#       uses:peaceiris/actions-gh-pages@v4
-#       with:
-#         publish:./dist
-#         commit_messages:'ci:auto deploy [skip ci]'
-#         github_token:${{secrets.GITHUB_TOKEN}}
-
 # 工作流名称，GitHub页面会显示这个名字，自定义即可
 name: Frontend CI/CD Workflow
 # 触发条件：哪些操作会启动这个CI/CD工作流
@@ -90,3 +49,6 @@ jobs:
           commit_message: 'ci: auto deploy [skip ci]'
           # 部署的密钥：GitHub自动生成的TOKEN，无需手动填，后续配置权限会自动注入
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run unit tests
+        run : npm run test
