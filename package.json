@@ -2,6 +2,9 @@
   "name": "ci-cd",
   "private": true,
   "version": "0.0.0",
+  "description": "CI/CD test application",
+  "author": "Test Author",
+  "main": "main.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,16 +12,30 @@
     "lint": "eslint . --ext .jsx,.js,.cjs,.mjs,.vue --fix",
     "preview": "vite preview",
     "test": "node gitJS/tagTest.js",
-    "electron:start":"electron .",
-    "electron:build":"electron-builder"
+    "electron:start": "cross-env NODE_ENV=development electron .",
+    "electron:build": "cross-env NODE_ENV=production && npm run build && electron-builder"
   },
-  "build":{
-    "appId":"com.test.vue",
-    "productName":"myTest",
-    "directories": { "output": "electron-dist" },
-    "files": ["main.js", "dist/**/*"],
-    "win": { "target": "nsis" },
-    "mac": { "target": "dmg" }
+  "build": {
+    "appId": "com.test.vue",
+    "productName": "myTest",
+    "directories": {
+      "output": "electron-dist"
+    },
+    "files": [
+      "main.js",
+      "dist/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "mac": {
+      "target": "dmg"
+    }
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -29,6 +46,7 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "cross-env": "^10.1.0",
     "electron": "^40.2.1",
     "electron-builder": "^26.7.0",
     "eslint": "^9.39.2",

@@ -1,5 +1,5 @@
-const { app, BrowserWindow, screen } = require('electron');
-const path = require('path');
+import { app, BrowserWindow, screen } from 'electron';
+import path from 'path';
 
 function createWindow() {
   // 1. 获取用户屏幕的尺寸（用于自适应初始大小）
@@ -34,6 +34,8 @@ function createWindow() {
 
   // 创建窗口
   const mainWindow = new BrowserWindow(windowConfig);
+  // 隐藏菜单栏（无论环境如何）
+  mainWindow.setMenu(null);
 
   // 加载网页
   mainWindow.loadFile(path.join(__dirname, 'dist/index.html'));
